@@ -1,4 +1,5 @@
-// creation of base data
+// debemos cambiar la estructuracion de codigo, a objetos
+
 import sqlite3 from "sqlite3";
 
 const sqlite = sqlite3.verbose();

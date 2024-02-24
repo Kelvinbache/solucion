@@ -1,46 +1,38 @@
-/**
- * 3) recover of the data
- * 4) drive the errors
- */
-//----------------------------------------------------
 import express from "express";
-//-----------------------------------------------------
-import { delete_users, url, write } from "../sql/base_data.mjs";
-//-----------------------------------------------------
-import { data, value } from "./validation.mjs";
+
+//* This is routers
+import { router } from "../routers/routers.mjs";
+
+//? This is middleware
+import { data, value } from "../middleware/validation.mjs";
+
+import { errorsGlobal } from "../errors/error.mjs";
 
 const app = express();
 
+// remove is the head
 app.disable("x-powered-by");
+
 
 app.use(express.urlencoded());
 
+// Can read the data, of urls 
 app.use(express.json());
 
-// app.use(express.static("public"));
+//* routers of sever
 
-// app.get("/api/users/v1", (req, res, next) => {
-//   res.status(200).render("index.html");
-// });
+// this is the main page
+app.use("/api/users/v1/admin",router);
 
-app.post("/api/users/v1", data(value), (req, res) => {
-  url(req.body);
-  res.status(201).json({ status: "ok", response: write() });
-});
+// router for create new users
+app.use("/api/users/v1/admin/create-users", data(value), router);
 
-app.delete("/api/users/v1/:id", (req, res) => {
-  res.status(200).json({
-    status: "ok",
-    response: "delete exit",
-    action: delete_users(req.params.id),
-  });
-});
+// router for remover users
+app.use("/api/users/v1/admin/delete-users", router);
 
-app.use((error, req, res, next) => {
-  res.status(404).json({
-    status: "error",
-    message: error.message,
-  });
-});
+
+// error global 
+app.use(errorsGlobal);
+
 
 app.listen(3000, () => console.log("http://localhost:3000"));
