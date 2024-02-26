@@ -1,4 +1,6 @@
-// debemos cambiar la estructuracion de codigo, a objetos
+// debemos cambiar la estructuracion del codigo,
+// debemos intentar pasar los datos directamente a la function 
+// o almenos pasarlo como un middleware 
 
 import sqlite3 from "sqlite3";
 
@@ -16,8 +18,7 @@ const table = `
 CREATE TABLE users ( 
     user_id INTEGER NOT NULL,
     user_name TEXT NOT NULL,
-    user_password INTEGER NOT NULL,
-  
+    user_password INTEGER NOT NULL,  
     PRIMARY KEY ( user_id AUTOINCREMENT)
 );`;
 
