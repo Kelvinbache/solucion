@@ -47,6 +47,8 @@ app.use("/api/users/v1/admin", router);
 
 app.use("/api/users/v1/page", router);
 
+app.use("/api/users/v1/page", router); // we would have that drive with middleware
+
 //*----------------------------------------------------------------------------------------------------
 
 
